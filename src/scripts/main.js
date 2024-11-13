@@ -1,6 +1,6 @@
 'use strict';
 
-//sldier about
+// About Slider
 
 const about = document.getElementById('about');
 const aboutSliderNumber = about.querySelector('.about__slider-number');
@@ -26,13 +26,13 @@ aboutSlides.addEventListener('scroll', () => {
 aboutNextSlideBtn.addEventListener('click', () => {
   const aboutSlideWidth = aboutSlides.getBoundingClientRect().width;
 
-  aboutSlides.scrollLeft += aboutSlideWidth
+  aboutSlides.scrollLeft += aboutSlideWidth;
 });
 
 aboutPrevSlideBtn.addEventListener('click', () => {
   const aboutSlideWidth = aboutSlides.getBoundingClientRect().width;
 
-  aboutSlides.scrollLeft -= aboutSlideWidth
+  aboutSlides.scrollLeft -= aboutSlideWidth;
 });
 
 function updateAboutSlider(slideIndex) {
@@ -53,80 +53,80 @@ function updateAboutSlider(slideIndex) {
   aboutSliderPoints[slideIndex].classList.add('slider__point--active');
 }
 
-// header slider
+// Header Slider
 
-  const header = document.querySelector('.header');
+const header = document.querySelector('.header');
 
-  const headerSlides = header.querySelector('.slider__slides--header');
-  const headerSliderUnderlines = header.querySelectorAll('.prev-next__underline');
-  const headerPrevSlider = header.querySelector('.prev-next__btn--prev');
-  const headerNextSlider = header.querySelector('.prev-next__btn--next');
+const headerSlides = header.querySelector('.slider__slides--header');
+const headerSliderUnderlines = header.querySelectorAll('.prev-next__underline');
+const headerPrevSlideBtn = header.querySelector('.prev-next__btn--prev');
+const headerNextSlideBtn = header.querySelector('.prev-next__btn--next');
 
-  let headerTimerId = 0;
+let headerTimerId = 0;
 
-  headerSlides.addEventListener('scroll', () => {
-    const headerSlideWidth = headerSlides.getBoundingClientRect().width;
+headerSlides.addEventListener('scroll', () => {
+  const headerSlideWidth = headerSlides.getBoundingClientRect().width;
 
-    window.clearTimeout(headerTimerId);
-    headerTimerId = window.setTimeout(() => {
-    scrollSlider(headerSlides, headerSlideWidth, updateHeaderTitle);
-    }, 100);
-  });
+  window.clearTimeout(headerTimerId);
+  headerTimerId = window.setTimeout(() => {
+    scrollSlider(headerSlides, headerSlideWidth, updateHeaderSlider);
+  }, 100);
+});
 
-  headerNextSlideBtn.addEventListener('click', () => {
-    const headerSlideWidth = headerSlides.getBoundingClientRect().width;
+headerNextSlideBtn.addEventListener('click', () => {
+  const headerSlideWidth = headerSlides.getBoundingClientRect().width;
 
-    headerSlides.scrollLeft += headerSlideWidth;
-  });
+  headerSlides.scrollLeft += headerSlideWidth;
+});
 
-  headerPrevSlideBtn.addEventListener('click', () => {
-    const headerSlideWidth = headerSlides.getBoundingClientRect().width;
+headerPrevSlideBtn.addEventListener('click', () => {
+  const headerSlideWidth = headerSlides.getBoundingClientRect().width;
 
-    headerSlides.scrollLeft -= headerSlideWidth;
-  });
+  headerSlides.scrollLeft -= headerSlideWidth;
+});
 
-  function updateHeaderSlider(slideIndex) {
-    headerPrevSlideBtn.disabled = slideIndex === 0;
-    headerNextSlideBtn.disabled = slideIndex === 4;
+function updateHeaderSlider(slideIndex) {
+  headerPrevSlideBtn.disabled = slideIndex === 0;
+  headerNextSlideBtn.disabled = slideIndex === 4;
 
-    const activeUnderline = header.querySelector('.prev-next__underline--active');
+  const activeUnderline = header.querySelector('.prev-next__underline--active');
 
-    activeUnderline.classList.remove('prev-next__underline--active');
-    headerSliderUnderlines[slideIndex].classList.add(
-      'prev-next__underline--active',
-    );
+  activeUnderline.classList.remove('prev-next__underline--active');
+  headerSliderUnderlines[slideIndex].classList.add(
+    'prev-next__underline--active',
+  );
+}
+
+function scrollSlider(slides, slideWidth, updateSlider) {
+  const scrollLeft = Math.round(slides.scrollLeft);
+
+  switch (scrollLeft) {
+    case 0:
+      updateSlider(0);
+      break;
+
+    case slideWidth:
+      updateSlider(1);
+      break;
+
+    case slideWidth * 2:
+      updateSlider(2);
+      break;
+
+    case slideWidth * 3:
+      updateSlider(3);
+      break;
+
+    case slideWidth * 4:
+      updateSlider(4);
+      break;
+
+    default:
+      break;
   }
+}
 
-  function scrollSlider(slides, slideWidth, updateSlider) {
-    const scrollLeft = Math.round(slides.scrollLeft);
-
-    switch (scrollLeft) {
-      case 0:
-        updateSlider(0);
-        break;
-
-      case slideWidth:
-        updateSlider(1);
-        break;
-
-      case slideWidth * 2:
-        updateSlider(2);
-        break;
-
-        case slideWidth * 3:
-        updateSlider(3);
-        break;
-
-      case slideWidth * 4:
-        updateSlider(4);
-        break;
-
-      default:
-        break;
-    }
-  }
-
-// tech-specs buttons
+// Tech Specs Buttons
 
 const techSpecsImgWrapper = document.querySelector('.tech-specs__img-wrapper');
 const techSpecsButtons =
@@ -156,17 +156,17 @@ for (const techSpecsButton of techSpecsButtons) {
   });
 }
 
-//forms
+// Get In Touch / Form Validation
 
 const form = document.querySelector('.form');
 
 const nameLabel = form.querySelector('.form__label--name');
 const nameInput = form.querySelector('#name-input');
 
-const emailLabel = form.querySelector('.from__label--email');
-const emailInput = from.querySelector('#email-input');
+const emailLabel = form.querySelector('.form__label--email');
+const emailInput = form.querySelector('#email-input');
 
-const phoneLabel = form.querySelector('form__label--phone');
+const phoneLabel = form.querySelector('.form__label--phone');
 const phoneInput = form.querySelector('#phone-input');
 
 const redColor = '#860404';
@@ -246,7 +246,7 @@ form.addEventListener('submit', (e) => {
 
       if (!allowedChars.includes(char) || (char === '+' && i !== 0)) {
         phoneError = true;
-        phoneLabel.textContent = 'Incorrenct phone format*';
+        phoneLabel.textContent = 'Incorrect phone format*';
         setColor(phoneLabel, phoneInput, redColor, redColor);
 
         break;
@@ -334,24 +334,24 @@ function setColor(label, input, labelColor, inputBorderColor) {
   input.style.borderColor = inputBorderColor;
 }
 
-//buy now link
+// Scroll Buy Now Link
 
 const buyNowLink = document.querySelector('.page__buy-now');
 const getInTouchSection = document.getElementById('contact');
-const getinTouchTop = getInTouchSection.offsetTop;
+const getInTouchTop = getInTouchSection.offsetTop;
 const windowHeight = window.innerHeight;
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
 
-  if (scrollY > getinTouchTop - windowHeight) {
+  if (scrollY > getInTouchTop - windowHeight) {
     buyNowLink.classList.add('page__buy-now--hidden');
   } else {
     buyNowLink.classList.remove('page__buy-now--hidden');
   }
 });
 
-//FAQ Select Question
+// FAQ Select Question
 
 const faqSection = document.getElementById('faq');
 const faqMoreBtn = faqSection.querySelector('.more-btn');
@@ -377,7 +377,7 @@ faqSection.addEventListener('click', (e) => {
   }
 
   faqMoreBtn.disabled = isMoreBtnDisabled;
-})
+});
 
 faqMoreBtn.addEventListener('click', () => {
   for (const question of questions) {
@@ -397,7 +397,7 @@ faqMoreBtn.addEventListener('click', () => {
   }
 });
 
-//correct closing video
+// Closing The Video In The Correct Section
 
 const headerPlayVideoBtn = document.querySelector('.header__play-video');
 const aboutPlayVideoBtn = document.querySelector('.about__play-video');
@@ -410,17 +410,17 @@ headerPlayVideoBtn.addEventListener('click', () => {
 
 aboutPlayVideoBtn.addEventListener('click', () => {
   videoCloseIcon.setAttribute('href', '#about');
-})
+});
 
-//select quantity
+// Select Quantity
 
-const orderPlace = document.getElementById('prder-place');
+const orderPlace = document.getElementById('order-place');
 const orderPay = document.getElementById('order-pay');
 
 const price1 = orderPlace.querySelector('.qty-price__price-value');
 const qtySelect1 = orderPlace.querySelector('.select-qty');
 const qtySelectValue1 = orderPlace.querySelector('.select-qty__current-value');
-const qtySelectList1 = orderPlace.querySelector('.selcet-qty__list-wrapper');
+const qtySelectList1 = orderPlace.querySelector('.select-qty__list-wrapper');
 
 const price2 = orderPay.querySelector('.qty-price__price-value');
 const qtySelect2 = orderPay.querySelector('.select-qty');
@@ -467,7 +467,7 @@ function handleClickQuantityList(event, qtySelect, qtySelectValue, price) {
   li.classList.add('select-qty__item--selected');
 }
 
-//select country/city
+// Select Country / City
 
 const countrySelect = document.querySelector('.select--country');
 const countrySelectValue = countrySelect.querySelector(
@@ -480,7 +480,7 @@ const citySelectValue = citySelect.querySelector('.select__current-value');
 const citySelectList = citySelect.querySelector('.select__list-wrapper');
 
 countrySelect.addEventListener('click', () => {
-  countrySelectList.classList.toggle('select__list-wrapper-visible');
+  countrySelectList.classList.toggle('select__list-wrapper--visible');
 });
 
 countrySelectList.addEventListener('click', (e) => {
@@ -488,7 +488,7 @@ countrySelectList.addEventListener('click', (e) => {
 });
 
 citySelect.addEventListener('click', () => {
-  citySelectList.classList.toggle('select__list-wrapper-visible');
+  citySelectList.classList.toggle('select__list-wrapper--visible');
 });
 
 citySelectList.addEventListener('click', (e) => {
@@ -504,18 +504,18 @@ function handleClickSelectList(event, selectField, selectValue) {
 
   selectValue.innerText = li.innerText;
 
-  const selectedLi = selectField.querySelector('/select__item--selected');
+  const selectedLi = selectField.querySelector('.select__item--selected');
 
   li.classList.add('select__item--selected');
 
-  if(!selectedLi) {
+  if (!selectedLi) {
     return;
   }
 
   selectedLi.classList.remove('select__item--selected');
 }
 
-//language
+// Select Language
 
 const langSelect = document.querySelector('.select-lang');
 
@@ -527,10 +527,10 @@ langSelect.addEventListener('click', () => {
 });
 
 langSelectList.addEventListener('click', (e) => {
-  handleCLickLangList(e, langSelect, langSelectValue);
+  handleClickLangList(e, langSelect, langSelectValue);
 });
 
-function handleCLickLangList(event, selectField, selectValue) {
+function handleClickLangList(event, selectField, selectValue) {
   const li = event.target.closest('.select-lang__item');
 
   if (!li) {
@@ -573,7 +573,7 @@ document.addEventListener('click', (e) => {
 
   handleClickOutsideSelectList(
     e,
-    '.select-city',
+    '.select--city',
     citySelectList,
     'select__list-wrapper--visible',
   );
@@ -595,9 +595,9 @@ function handleClickOutsideSelectList(event, selector, selectList, className) {
   }
 }
 
-//card number & cvv
+// Card Number & CVV Number Inputs
 
-const cardNumInputs = orderPay/querySelectorAll('.pay-order__input--card-num');
+const cardNumInputs = orderPay.querySelectorAll('.pay-order__input--card-num');
 const cvvInput = orderPay.querySelector('.pay-order__input--cvv');
 
 for (const cardNumInput of cardNumInputs) {
@@ -610,7 +610,7 @@ cvvInput.addEventListener('input', (e) => {
   handleNumInputValidation(e, cvvInput);
 });
 
-function handleNumInputValidation(event,input) {
+function handleNumInputValidation(event, input) {
   for (const ch of event.target.value) {
     if (!numbers.includes(ch)) {
       input.value = '';
@@ -618,7 +618,7 @@ function handleNumInputValidation(event,input) {
   }
 }
 
-//pay order
+// Set Order Pay Quantity After Click On Order Place Purchase Button
 
 const orderPurchaseBtn = orderPlace.querySelector('.place-order__purchase-btn');
 
@@ -638,7 +638,7 @@ orderPurchaseBtn.addEventListener('click', () => {
   const order2LiArr = [...order2LiCollection];
 
   const order2PrevSelectedLi = order2LiArr.find((li) => {
-    return li.classList.contains('aelect-qty__item--selected');
+    return li.classList.contains('select-qty__item--selected');
   });
 
   const order2NextSelectedLi = order2LiArr.find((li) => {
@@ -649,5 +649,4 @@ orderPurchaseBtn.addEventListener('click', () => {
     order2NextSelectedLi.classList.add('select-qty__item--selected');
     order2PrevSelectedLi.classList.remove('select-qty__item--selected');
   }
-})
-
+});
